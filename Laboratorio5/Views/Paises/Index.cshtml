@@ -29,8 +29,12 @@
                     <td>@item.Continente</td>
                     <td> @Html.ActionLink("Editar", "EditarPais", new {identificador = @item.Id},
                         new {@class = "btn btn alert-info", @onClick = "return confirm('Quiere editar este pais?');"} )</td>
-                    <td> @Html.ActionLink("Borrar", "BorrarPais", new {identificador = @item.Id},
-                        new {@class = "btn btn alert-danger", @onClick = "return confirm('Quiere borrar este pais?');"} )</td>
+
+                    <td>  @using (Html.BeginForm("BorrarPais", "paises", new {identificador = @item.Id},
+                        FormMethod.Post, false, new {enctype = "multipart/form-data" }))
+                        {
+                            <input type ="submit" class = "btn btn alert-danger" value="Borrar" />
+                        } </td>
                 </tr>
             }
         </tbody>

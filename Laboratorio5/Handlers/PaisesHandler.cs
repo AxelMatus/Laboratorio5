@@ -87,6 +87,7 @@ namespace Laboratorio5.Handlers
             var consulta = @"Delete [dbo].[Pais] where Id = @Id";
             var comandoParaDelete = new SqlCommand(consulta, conexion);
 
+            comandoParaDelete.Parameters.AddWithValue("@Id", pais.Id);
             conexion.Open();
             bool exito = comandoParaDelete.ExecuteNonQuery() >= 1;
             conexion.Close();

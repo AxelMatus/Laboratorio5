@@ -86,16 +86,17 @@ namespace Laboratorio5.Controllers
         }
 
         [HttpPost]
-        public ActionResult BorrarPais(PaisModel pais)
+        public ActionResult BorrarPais(int? identificador)
         {
             try
             {
                 var paisesHandler = new PaisesHandler();
+                var pais = paisesHandler.ObtenerPaises().Find(model => model.Id == identificador);
                 paisesHandler.BorrarPais(pais);
                 return RedirectToAction("Index", "Paises");
             } catch
             {
-                return RedirectToAction("Index", "Paises");
+                return View();
             }
         }
     }
